@@ -1,0 +1,225 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[thinlines]{easytable} %for TAB useage
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multicol}
+\include{newcommands}
+
+\usepackage{ulem}
+%----------Input encoding---------------
+\usepackage[utf8]{inputenc}
+%----------Font encoding----------------
+\RequirePackage[T2A]{fontenc}
+%----------Babel------------------------
+\RequirePackage[english]{babel}
+%----------Indent for a new section-----
+\RequirePackage{indentfirst}
+%----------AMS formulae-----------------
+\RequirePackage{amsmath,amssymb,amsfonts}
+%----------Section's title appearence---
+\RequirePackage{titlesec}
+%----------Table of Contents Design-----
+\RequirePackage[titles]{tocloft}
+%----------Including pictures-----------
+\RequirePackage{graphicx}
+%----------[H] Option for PUT IT HERE!--
+\RequirePackage{float}
+%----------Style of float's captions----
+\RequirePackage{caption}
+%----------Inparagraph floats-----------
+\RequirePackage{wrapfig}
+%----------Hyperref---------------------
+\RequirePackage[colorlinks=true,allcolors=blue,
+unicode=true,hypertexnames=false]{hyperref}
+\hypersetup{pdfstartview={XYZ null null 1.25}}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+
+
+
+\graphicspath{{images/}}
+
+
+\title{Frustrated Bound}
+\author{
+    {\large A.~Samoilenka}$^{\dagger}$
+    and {\large Ya. Shnir}$^{\dagger \star}$
+    \\ \\
+    \\ $^{\dagger}${\small Department of Theoretical Physics and Astrophysics}\\
+    {\small Belarusian State University, Minsk 220004, Belarus}
+    \\ $^{\star}${\small BLTP, JINR, Dubna, Russia}
+}
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+\section{Frustrated magnets model}
+We have energy density \cite{Sutcliffe:2017aro}:
+\be\label{energy}
+\CE=-\frac{I_1}{2}(\pa_i m_j)^2 + \frac{I_2}{2}(\Delta m_i)^2 + H (1-m_3)
+\ee 
+
+Where $i,j=1,2,3$ and $m_i m_i=1$. Recall that hence 
+\be\label{ort}
+\pa_i m_j\pa_k m_j=-m_j\pa_i\pa_k m_j
+\ee
+
+Lets introduce matrix
+\be\label{matrix}
+M_{ij}=m_i\Delta m_j
+\ee
+
+Thus for example we get $\pa_i m_j\pa_i m_j=-m_j\pa_i^2 m_j=-Tr M$. In the same manner we can rewrite energy as:
+\be
+\CE=\frac{I_1}{2}Tr M + \frac{I_2}{2}Tr(M M^T) + H V(m_3)
+\ee
+
+Let's do now little trick which will help us get better bound later. If $m_i$ minimizes functional \re{energy}, then it should be minimal also relative scaling $x\rightarrow\lambda x$:\footnote{Here and farther we drop the integrals just for the sake of brevity}
+\be
+\left. \frac{d\CE}{d\lambda}\right|_{\lambda=1}= \frac{I_1}{2}Tr M - \frac{I_2}{2}Tr(M M^T) + 3 H V(m_3) = 0
+\ee
+
+Hence we can rewrite energy introducing arbitrary parameter $\alpha$:
+\be\label{trick}
+\CE= \CE + \alpha\left(\left. \frac{d\CE}{d\lambda}\right|_{\lambda=1}\right)= \frac{I_1}{2}(1+\alpha)Tr M + \frac{I_2}{2}(1-\alpha)Tr(M M^T) + (1+3\alpha)H V(m_3)
+\ee
+
+Actually this trick shoves the way to potentially improve any topological bound: if one thinks that formula for bound is not the best he can simply redefine parameters in the formula by this procedure and maximize it with respect to $\alpha$. 
+
+\section{Usual Faddeev-Skyrme model}
+Now lets consider usual Faddeev-Skyrme model with Skyrme term quartic in derivatives and positive parameter for second in derivatives term. Following notation of \cite{harland}:\footnote{we keep the notation for the field $m_i$ instead of usual symbol $\vec \phi$}
+\be
+\CE_{FS}=\alpha_2 (\pa_i m_j)^2 + \frac{\alpha_4}{2}\left[ (\pa_i m_j \pa_i m_j)^2 - \pa_i m_k \pa_j m_k \pa_j m_n \pa_i m_n \right]+\alpha_0 V
+\ee
+
+Then using \re{ort} and \re{matrix} we obtain the next form for $\CE_{FS}$
+\be
+\CE_{FS}=-\alpha_2 Tr M + \frac{\alpha_4}{2}\left[ (Tr M)^2 - (m_k \pa_i \pa_j m_k)^2 \right]+\alpha_0 V
+\ee
+
+As $(m_k \pa_i \pa_j m_k)^2\geq0$ we get:
+\be
+\CE_{FS}\leq -\alpha_2 Tr M + \frac{\alpha_4}{2}(Tr M)^2 +\alpha_0 V
+\ee
+
+Cauchy-Schwartz inequality states that $(Tr M)^2\leq d\  Tr M^2$, where $d=dim(M)=3$ -- dimension of the matrix. Thus we get:
+\be
+\CE_{FS}\leq -\alpha_2 Tr M + \frac{3\alpha_4}{2}Tr M^2 +\alpha_0 V
+\ee
+
+Next we can recall that any matrix could be represented as $M=M_s+M_a$, where $M_s^T=M_s$ is a symmetric part and $M_a^T=-M_a$ antisymmetric. And $Tr M_a=Tr(M_s M_a)=0$ because $Tr(M_s M_a)=(M_s)_{ij}(M_a)_{ji}=-(M_s)_{ji}(M_a)_{ji}$. Then we get
+$$
+TrM^2=Tr M_s^2 + Tr M_a^2
+$$
+\be
+Tr(M M^T)=Tr M_s^2 - Tr M_a^2
+\ee
+
+Where $Tr M_a^2= (M_a)_{ij}(M_a)_{ji}=-(M_a)_{ij}(M_a)_{ij}\leq 0$, hence $Tr M^2 \leq Tr(M M^T)$ and we have new upper bound for $\CE_{FS}$:
+\be\label{FS}
+\CE_{FS}\leq -\alpha_2 Tr M + \frac{3\alpha_4}{2}Tr (M M^T) +\alpha_0 V
+\ee
+
+\section{Bound for frustrated magnets}
+Now comparing \re{trick} and \re{FS} we see that in order for RHS to be equal we have to set:
+$$
+\alpha_2=-\frac{I_1}{2}(1+\alpha)
+$$
+\be\label{param}
+\alpha_4=\frac{I_2}{3}(1-\alpha)\geq0
+\ee
+$$
+\alpha_0=(1+3\alpha)H
+$$
+
+Thus we obtained the bound for the Frustrated magnets model with respect to Faddeev-Skyrme model, but with $I_1<0$, and hence positive sign for first term:
+\be\label{geqFS}
+\CE\geq\CE_{FS}
+\ee
+
+and corresponding redefinition of the parameters \re{param}. Though we still have free parameter $\alpha$, lets try to fix it. Obviously we should pick $\alpha$ so that $\CE_{FS}$ would be maximal for the given set of parameters in the model \re{energy}.
+
+Now lets use general formula for the topological bound by Harland \cite{harland}:
+\be
+\CE\geq3^{3/8}16\pi^2\sqrt{\alpha_2\alpha_4}Q^{3/4}\left( 1+\frac{1}{3}\frac{k}{1+\sqrt{1+k}} \right)\sqrt{\frac{2}{1+\sqrt{1+k}}}
+\ee
+
+where 
+\be
+k=\left( \frac{2^7 3^{11/4}}{7^3 \pi^{3/2}} \right)^2 \frac{\alpha_4\alpha_0}{\alpha_2^2}
+\ee
+
+\section{Generalization of scaling theorem}
+We can redefine so that 
+\be\label{energyre}
+\CE=-(\pa_i m_j)^2 + (\Delta m_i)^2 + H V
+\ee 
+
+Let's consider more general changes for $x$, in form
+\be
+x^i\rightarrow f^i(x^j)
+\ee
+
+so that now it has non equal diagonal elements, non-diagonal elements and depends on $x^i$, but still close to $x$, with small $\lambda_{ij}$:
+\be
+\frac{\pa x^j}{\pa f^i}=\delta_{ij}+\lambda_{ij}
+\ee
+
+then $d^3 f=(1-Tr\lambda)d^3 x$ and $\frac{\pa}{\pa f^i}=\pa_i+\lambda_{ij}\pa_j$. For solution first variation of energy is zero hence:
+\be
+\int d^3 x (-2\pa_i\vec{m}\pa_j\vec{m}+4\pa_i\pa_j\vec{m}\Delta\vec{m}+2\pa_j\vec{m}\Delta\vec{m}\pa_i-\delta_{ij}\CE)\lambda_{ij}=0
+\ee
+
+then
+\be
+-2\pa_i\vec{m}\pa_j\vec{m}+4\pa_i\pa_j\vec{m}\Delta\vec{m}-2\pa_i(\pa_j\vec{m}\Delta\vec{m})-\delta_{ij}\CE=0
+\ee
+
+in particular we get
+\be
+\pa_i\vec{m}^2+\Delta\vec{m}^2-3 H V=2\pa_i(\pa_i\vec{m}\Delta\vec{m})
+\ee
+
+\section{Negative energy density}
+Let's consider $m_1=f(r), m_2=0$, then
+\be
+\CE\sim-f'^2+(f''+2\frac{f'}{r})^2+\frac{H}{2}f^2
+\ee
+
+for small $f$. In order for second to be zero we obtain $f'r^2=c_1$, and hence $f=-\frac{c_1}{r}+c_2$. let's set $c_2=0$. then $\CE\sim-\frac{c_1^2}{r^4}+\frac{H}{2}\frac{c_1^2}{r^2}$. Hence for small $r$ energy density will be negative!
+
+\section{Conclusions}
+
+%The main useful feature that could be obtained from this paper is that: it is profitable some times to consider $M_{ij}=m_i\Delta m_j$ matrix instead of $D_{ij}=\pa_i m_k \pa_j m_k$ (notice the summation goes for different induces). And the trick \re{trick} could be be useful for different models.
+
+\section{To do}
+-Can I prove that energy can be negative globally, not only locally?
+
+-Can I make Wick rotation and analitically continue solution for $I_1>0$?
+
+\section*{Acknowledgements}
+A.S. is very sorry to professors R. Poghossian and A. Belavin who's lectures during SymPhys XIV he entirely wasted on the derivation of this bound.
+
+\begin{small}
+\begin{thebibliography}{13}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibitem{Sutcliffe:2017aro}P.~Sutcliffe, Skyrmion knots in frustrated magnets, 
+Phys.\ Rev.\ Lett.\  {\bf 118} (2017) no.24,  247203
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibitem{harland}Harland, D. (2014). Topological energy bounds for the Skyrme and Faddeev models with massive pions. Physics Letters B, 728, 518-523.
+
+\end{thebibliography}
+\end{small}
+
+%\bibliographystyle{gost7103u-m_non-bold}
+%\bibliography{bib}
+
+
+\end{document}
